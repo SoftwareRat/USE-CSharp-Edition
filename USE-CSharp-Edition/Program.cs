@@ -49,12 +49,14 @@ namespace USE_CSharp_Edition
                 Console.ResetColor();
                 Directory.SetCurrentDirectory(@"C:\Program Files (x86)\Steam");
                 WebClient webClient = new WebClient();
-                webClient.DownloadFile("https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US", @"C:\Program Files (x86)\Steam\FirefoxSetup.exe");
+                string Firefox = @"C:\Program Files (x86)\Steam\FirefoxSetup.exe";
+                webClient.DownloadFile("https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US", Firefox);
                 var p = Process.Start(@"C:\Program Files (x86)\Steam\FirefoxSetup.exe", "/DesktopShortcut=false" + "/InstallDirectoryPath=C:\\Users\\kiosk\\AppData\\Local\\Firefox");
                 p.WaitForExit();
                 System.IO.File.Move(@"C:\Users\kiosk\AppData\Local\Firefox\firefox.exe", @"C:\Users\kiosk\AppData\Local\Firefox\icefox.exe");
                 Directory.SetCurrentDirectory(@"C:\Program Files (x86)\Steam");
-                webClient.DownloadFile("https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.8.8/npp.7.8.8.bin.x64.7z", @"C:\Users\kiosk\AppData\Local\Notepad++\npp.7.8.8.bin.x64.7z");
+                string npp = @"C:\Users\kiosk\AppData\Local\Notepad++\npp.7.8.8.bin.x64.7z";
+                webClient.DownloadFile("https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.8.8/npp.7.8.8.bin.x64.7z", npp);
                 Process.Start(@"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\8za.exe", "x" + "C:\\Users\\kiosk\\AppData\\Local\\Notepad++\\npp.7.8.8.bin.x64.7z");
                 p.WaitForExit();
                 Console.BackgroundColor = ConsoleColor.Yellow;
