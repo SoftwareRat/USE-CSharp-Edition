@@ -48,8 +48,7 @@ namespace USE_CSharp_Edition
                 Console.WriteLine("NVIDIA GeForce NOW System detected!");
                 Console.ResetColor();
                 Console.WriteLine("Preparing files...");
-                // Preparing 7z
-                File.Copy(@"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\7za.exe", @"C:\Program Files(x86)\Steam\steamapps\common\Assassins Creed Origins\8za.exe", true);
+
                 WebClient webClient = new WebClient();
 
                 //Firefox installation
