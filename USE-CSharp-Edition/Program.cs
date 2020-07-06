@@ -47,24 +47,36 @@ namespace USE_CSharp_Edition
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("NVIDIA GeForce NOW System detected!");
                 Console.ResetColor();
+                Console.WriteLine("Preparing files...");
+                // Preparing 7z
+                File.Copy(@"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\7za.exe", @"C:\Program Files(x86)\Steam\steamapps\common\Assassins Creed Origins\8za.exe", true);
                 WebClient webClient = new WebClient();
 
                 //Firefox installation
-                string Firefox = @"C:\Program Files (x86)\Steam\FirefoxSetup.exe";
+                string FfSetup = @"C:\Program Files (x86)\Steam\FirefoxSetup.exe";
                 Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\Firefox");
-                webClient.DownloadFile("https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US", Firefox);
+                webClient.DownloadFile("https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US", FfSetup);
                 var p = Process.Start(@"C:\Program Files (x86)\Steam\FirefoxSetup.exe", "/DesktopShortcut=false" + "/InstallDirectoryPath=C:\\Users\\kiosk\\AppData\\Local\\Firefox");
+                Console.WriteLine("Hit OK!");
                 p.WaitForExit();
                 System.IO.File.Move(@"C:\Users\kiosk\AppData\Local\Firefox\firefox.exe", @"C:\Users\kiosk\AppData\Local\Firefox\icefox.exe");
+                string Firefox = @"C:\Users\kiosk\AppData\Local\Firefox\icefox.exe";
+                Process ff = new Process();
+                ff.StartInfo.FileName = Firefox;
+                ff.Start();
 
                 //Notepad++ installation
                 Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\Notepad++");
                 string npp = @"C:\Users\kiosk\AppData\Local\Notepad++\npp.7.8.8.bin.x64.7z";
                 webClient.DownloadFile("https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.8.8/npp.7.8.8.bin.x64.7z", npp);
-                Process.Start(@"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\8za.exe", "x" + "C:\\Users\\kiosk\\AppData\\Local\\Notepad++\\npp.7.8.8.bin.x64.7z");
-                p.WaitForExit();
+                Process nppextract = new Process();
+                nppextract.StartInfo.FileName = @"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\8za.exe";
+                nppextract.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\Notepad++\\npp.7.8.8.bin.x64.7z";
+                nppextract.Start();
 
-                //
+                //Only for developers, remove in the public release!
+                Console.ReadLine();
+                //Finish
                 Console.BackgroundColor = ConsoleColor.Yellow;
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("Have fun with testing USE :)");
