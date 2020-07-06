@@ -69,11 +69,16 @@ namespace USE_CSharp_Edition
                 string npp = @"C:\Users\kiosk\AppData\Local\Notepad++\npp.7.8.8.bin.x64.7z";
                 webClient.DownloadFile("https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.8.8/npp.7.8.8.bin.x64.7z", npp);
                 Process nppextract = new Process();
-                nppextract.StartInfo.FileName = @"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\8za.exe";
+                nppextract.StartInfo.FileName = @"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\sugus.exe";
                 nppextract.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\Notepad++\\npp.7.8.8.bin.x64.7z";
+                nppextract.StartInfo.WorkingDirectory = @"C:\Users\kiosk\AppData\Local\Notepad++";
                 nppextract.Start();
+                File.Copy(@"C:\Users\kiosk\AppData\Local\Notepad\notepad++.exe",  @"C:\Users\kiosk\AppData\Local\Notepad\notite.exe", true);
 
                 //Only for developers, remove in the public release!
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("CHECK FOR ANY PROBLEMS");
                 Console.ReadLine();
                 //Finish
                 Console.BackgroundColor = ConsoleColor.Yellow;
