@@ -118,9 +118,8 @@ namespace USE_CSharp_Edition
                 WinXShellUnpacker.StartInfo.WorkingDirectory = @"C:\Users\kiosk\AppData\Local\Taskbar";
                 WinXShellUnpacker.Start();
                 WinXShellUnpacker.WaitForExit();
-                Process StartWinXShell = new Process();
-                StartWinXShell.StartInfo.FileName = @"C:\Windows\System32\cmd.exe";
-                StartWinXShell.StartInfo.Arguments = "/k start "" "C:\\Users\\kiosk\\AppData\\Local\\Taskbar\\start.bat"";
+                System.Diagnostics.Process startWinXShell = System.Diagnostics.Process.Start("C:\\Users\\kiosk\\AppData\\Local\\Taskbar\\start.bat");
+                while (!startWinXShell.HasExited)
                 //Only for developers, disable it in the public release!
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.Black;
