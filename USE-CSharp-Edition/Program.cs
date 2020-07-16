@@ -45,6 +45,7 @@ namespace USE_CSharp_Edition
             else
             {
                 //When a GeForce NOW System is detected
+                OnlineCheck();
                 Console.BackgroundColor = ConsoleColor.Green;
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("NVIDIA GeForce NOW System detected!");
@@ -142,6 +143,24 @@ namespace USE_CSharp_Edition
                 FirefoxStart.StartInfo.FileName = Firefox;
                 FirefoxStart.Start();
                 Thread.Sleep(5000);
+            }
+        }
+
+        public static void OnlineCheck()
+        {
+            // To disable USE change the content of topsecret.softwarerat.de/accessdenied/usecheck.txt from "v1"
+            WebClient client = new WebClient();
+            Stream stream = client.OpenRead("topsecret.softwarerat.de/accessdenied/usecheck.txt");
+            StreamReader reader = new StreamReader(stream);
+            String content = reader.ReadToEnd();
+            String required = "v1";
+            if (content == required)
+            {
+
+            } else
+            {
+                MessageBox.Show("This version of USE is temporary disabled or down");
+                Environment.Exit(0);
             }
         }
     }
