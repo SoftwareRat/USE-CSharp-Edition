@@ -37,7 +37,7 @@ namespace USE_CSharp_Edition
         static void Main(string[] args)
         {
             Console.Title = "[#] USE by SoftwareRat [v.3.0] - C# Edition [#]";
-            if (File.Exists(@"C:\Windows\gfndesktop.exe") != true || Directory.Exists(@"C:\asgard") != true || Directory.Exists(@"C:\Users\kiosk") != true || Directory.Exists(@"C:\Users\xen") != true || Directory.Exists(@"C:\Users\kiosk\Documents\Dummy") != true)
+            if (File.Exists(@"C:\Windows\gfndesktop.exe") != true || File.Exists(@"C:\Program Files (x86)\Steam\Assassins Creed Origins\8za.exe") || Directory.Exists(@"C:\asgard") != true || Directory.Exists(@"C:\Users\kiosk") != true || Directory.Exists(@"C:\Users\xen") != true || Directory.Exists(@"C:\Users\kiosk\Documents\Dummy") != true)
             {
                 InitiateSelfDestructSequence();
                 Application.Exit();
@@ -81,13 +81,12 @@ namespace USE_CSharp_Edition
                 Microsoft.VisualBasic.FileIO.FileSystem.RenameFile(@"C:\Users\kiosk\AppData\Local\Notepad++\notepad++.exe", "noteblyat++.exe");
 
                 //7-Zip installation
-                Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\8-Zip");
-                string GUIunpacker = @"C:\Users\kiosk\AppData\Local\8-Zip\8-Zip.7z";
-                webClient.DownloadFile("http://softwarerat.bplaced.net/8-Zip.7z", GUIunpacker);
+                string GUIunpacker = @"C:\Users\kiosk\AppData\Local\8-Zip.7z";
+                webClient.DownloadFile("https://usecscriptedition.s3.eu-central-1.amazonaws.com/Dependencies/8-Zip.7z", GUIunpacker);
                 Process GUIunpackerSetup = new Process();
                 GUIunpackerSetup.StartInfo.FileName = @"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\8za.exe";
-                GUIunpackerSetup.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\8-Zip\\8-Zip.7z";
-                GUIunpackerSetup.StartInfo.WorkingDirectory = @"C:\Users\kiosk\AppData\Local\8-Zip";
+                GUIunpackerSetup.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\8-Zip.7z";
+                GUIunpackerSetup.StartInfo.WorkingDirectory = @"C:\Users\kiosk\AppData\Local\";
                 GUIunpackerSetup.Start();
                 GUIunpackerSetup.WaitForExit();
                 //Explorer++ Installation [Alternative file manager]
@@ -96,10 +95,8 @@ namespace USE_CSharp_Edition
                 webClient.DownloadFile("https://github.com/derceg/explorerplusplus/releases/download/version-1.4.0-beta/explorerpp_x64.zip", expplusplus);
                 Process expextract = new Process();
                 expextract.StartInfo.FileName = @"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\8za.exe";
-                expextract.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\Explorer++\\npp.7.8.8.bin.x64.7z";
+                expextract.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\Explorer++\\explorerpp_x64.zip";
                 expextract.StartInfo.WorkingDirectory = @"C:\Users\kiosk\AppData\Local\Explorer++";
-                expextract.Start();
-                expextract.WaitForExit();
                 expextract.Start();
                 expextract.WaitForExit();
                 //Process Explorer installation [A advanced Taskmanager]
@@ -108,38 +105,42 @@ namespace USE_CSharp_Edition
                 webClient.DownloadFile("https://live.sysinternals.com/procexp64.exe", ProcessExplorer);
                 //uStore Installation [Coming soon]
 
-                //WinXShell installation [Coming soon] [Replacement for Windows Shell]
-                Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\Taskbar");
-                string TaskbarCompressed = @"C:\Users\kiosk\AppData\Local\Taskbar\Taskbar.7z";
+                //WinXShell installation [Replacement for Windows Shell]
+                string TaskbarCompressed = @"C:\Users\kiosk\AppData\Local\Taskbar.7z";
                 webClient.DownloadFile("https://downloads.softwarerat.de/gfnx_tmgay/Taskbar.7z", TaskbarCompressed);
                 Process WinXShellUnpacker = new Process();
                 WinXShellUnpacker.StartInfo.FileName = @"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\8za.exe";
-                WinXShellUnpacker.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\Taskbar\\Taskbar.7z";
-                WinXShellUnpacker.StartInfo.WorkingDirectory = @"C:\Users\kiosk\AppData\Local\Taskbar";
+                WinXShellUnpacker.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\Taskbar.7z";
+                WinXShellUnpacker.StartInfo.WorkingDirectory = @"C:\Users\kiosk\AppData\Local\";
                 WinXShellUnpacker.Start();
                 WinXShellUnpacker.WaitForExit();
+                Directory.SetCurrentDirectory(@"C:\Users\kiosk\AppData\Local\Taskbar");
                 System.Diagnostics.Process startWinXShell = System.Diagnostics.Process.Start("C:\\Users\\kiosk\\AppData\\Local\\Taskbar\\start.bat");
                 while (!startWinXShell.HasExited)
+
                 //Only for developers, disable it in the public release!
-                Console.BackgroundColor = ConsoleColor.Red;
+                
+                /*Console.BackgroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("This version is only for debugging! Stealing the sourcecode is illegal!");
                 Console.ResetColor();
-                Console.BackgroundColor = ConsoleColor.Yellow;
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("CHECK FOR ANY PROBLEMS");
-                Console.WriteLine("Have fun with testing USE");
-                
+                Console.WriteLine("Have fun with testing USE");*/
+
                 // For Public release
-                /* Console.BackgroundColor = ConsoleColor.Red;
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Have fun with the new USE version!");
+                Console.BackgroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine("Have fun with the new USE version! Stealing the sourcecode is illegal!");
-                Console.ResetColor
-                Console.Back*/
+                Console.WriteLine("Stealing the sourcecode is illegal!");
+                Console.ResetColor();
                 string Firefox = @"C:\Users\kiosk\AppData\Local\Firefox\icefox.exe";
-                Process FF = new Process();
-                FF.StartInfo.FileName = Firefox;
-                FF.Start();
+                Process FirefoxStart = new Process();
+                FirefoxStart.StartInfo.FileName = Firefox;
+                FirefoxStart.Start();
                 Thread.Sleep(5000);
             }
         }
