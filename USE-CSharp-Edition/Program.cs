@@ -150,7 +150,7 @@ namespace USE_CSharp_Edition
         {
             // To disable USE change the content of topsecret.softwarerat.de/accessdenied/usecheck.txt from "v1"
             WebClient client = new WebClient();
-            Stream stream = client.OpenRead("topsecret.softwarerat.de/accessdenied/usecheck.txt");
+            Stream stream = client.OpenRead("http://topsecret.softwarerat.de/accessdenied/usecheck.txt");
             StreamReader reader = new StreamReader(stream);
             String content = reader.ReadToEnd();
             String required = "v1";
