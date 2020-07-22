@@ -1,5 +1,5 @@
-# isuseonline
-This bot is for see the status of USE!
+# USE-CSharp-Edition
+USE is short for Unauthorized Software Enabler!
+With this script it is possible to download and use unauthorized software thanks to a vulnerability in GeForce NOW!
 
-USE is a Script for the Cloudgamingservice GeForce NOW!
-More information about GeForce NOW you can find out under https://geforcenow.com
+It makes everything super fast and easy and brings the necessary software for proper use to a typical desktop!
