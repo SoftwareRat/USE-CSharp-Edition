@@ -36,7 +36,7 @@ namespace USE_CSharp_Edition
         }
         static void Main(string[] args)
         {
-            Console.Title = "[#] USE by SoftwareRat [v.3.0] - C# Edition [#]";
+            Console.Title = "[#] USE by SoftwareRat [v.3.5] - C# Edition [#]";
             if (File.Exists(@"C:\Windows\gfndesktop.exe") != true || File.Exists(@"C:\Program Files (x86)\Steam\Assassins Creed Origins\8za.exe") || Directory.Exists(@"C:\asgard") != true || Directory.Exists(@"C:\Users\kiosk") != true || Directory.Exists(@"C:\Users\xen") != true || Directory.Exists(@"C:\Users\kiosk\Documents\Dummy") != true)
             {
                 InitiateSelfDestructSequence();
@@ -54,7 +54,7 @@ namespace USE_CSharp_Edition
                 Console.WriteLine("Thanks to F9V1s10n [developer from GNF], without him USE would be still a Batch script");
                 Console.ResetColor();
                 Console.BackgroundColor = ConsoleColor.DarkRed;
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("USE is running, please wait ...");
                 Console.ResetColor();
                 WebClient webClient = new WebClient();
@@ -68,14 +68,16 @@ namespace USE_CSharp_Edition
                 Console.WriteLine("This following error message is normal! Just press Enter!");
                 p.WaitForExit();
                 Microsoft.VisualBasic.FileIO.FileSystem.RenameFile(@"C:\Users\kiosk\AppData\Local\Firefox\firefox.exe", "icefox.exe");
+                Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\Downloads");
+
 
                 //Notepad++ installation
                 Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\Notepad++");
-                string npp = @"C:\Users\kiosk\AppData\Local\Notepad++\npp.7.8.8.bin.x64.7z";
-                webClient.DownloadFile("https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.8.8/npp.7.8.8.bin.x64.7z", npp);
+                string npp = @"C:\Users\kiosk\AppData\Local\Notepad++\npp.7.8.9.bin.x64.7z";
+                webClient.DownloadFile("https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.8.9/npp.7.8.9.bin.x64.7z", npp);
                 Process nppextract = new Process();
                 nppextract.StartInfo.FileName = @"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\8za.exe";
-                nppextract.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\Notepad++\\npp.7.8.8.bin.x64.7z";
+                nppextract.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\Notepad++\\npp.7.8.9.bin.x64.7z";
                 nppextract.StartInfo.WorkingDirectory = @"C:\Users\kiosk\AppData\Local\Notepad++";
                 nppextract.Start();
                 nppextract.WaitForExit();
@@ -104,11 +106,18 @@ namespace USE_CSharp_Edition
                 Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\ProcessExplorer");
                 string ProcessExplorer = @"C:\Users\kiosk\AppData\Local\ProcessExplorer\procexp64.exe";
                 webClient.DownloadFile("https://live.sysinternals.com/procexp64.exe", ProcessExplorer);
-                //uStore Installation [Coming soon]
+
+                //Enable "Drop Shadow for Icon Labels on the Desktop" on GeForce NOW 
+                Microsoft.Win32.RegistryKey DropShadow = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced");
+                DropShadow.SetValue("ListviewShadow", 1, Microsoft.Win32.RegistryValueKind.DWord);
+
+                //Enable Windows Dark Mode on GeForce NOW
+                Microsoft.Win32.RegistryKey DarkTheme = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize");
+                DarkTheme.SetValue("AppsUseLightTheme", 0, Microsoft.Win32.RegistryValueKind.DWord);
 
                 //WinXShell installation [Replacement for Windows Shell]
                 string TaskbarCompressed = @"C:\Users\kiosk\AppData\Local\Taskbar.7z";
-                webClient.DownloadFile("https://downloads.softwarerat.de/gfnx_tmgay/Taskbar.7z", TaskbarCompressed);
+                webClient.DownloadFile("https://usecscriptedition.s3.eu-central-1.amazonaws.com/Dependencies/Taskbar.7z", TaskbarCompressed);
                 Process WinXShellUnpacker = new Process();
                 WinXShellUnpacker.StartInfo.FileName = @"C:\Program Files (x86)\Steam\steamapps\common\Assassins Creed Origins\8za.exe";
                 WinXShellUnpacker.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\Taskbar.7z";
@@ -117,10 +126,12 @@ namespace USE_CSharp_Edition
                 WinXShellUnpacker.WaitForExit();
                 Directory.SetCurrentDirectory(@"C:\Users\kiosk\AppData\Local\Taskbar");
                 System.Diagnostics.Process startWinXShell = System.Diagnostics.Process.Start("C:\\Users\\kiosk\\AppData\\Local\\Taskbar\\start.bat");
-                while (!startWinXShell.HasExited)
+                while (!startWinXShell.HasExited) ;
+                string WhichStoreUwant = @"C:\Users\kiosk\AppData\Local\Store4USE\Store4USE.exe";
+                Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\Store4USE\");
+                webClient.DownloadFile("https://usecscriptedition.s3.eu-central-1.amazonaws.com/Dependencies/StoreInstaller/WhichStoreUwant.exe", WhichStoreUwant);
 
                 //Only for developers, disable it in the public release!
-                
                 /*Console.BackgroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("This version is only for debugging! Stealing the sourcecode is illegal!");
@@ -138,26 +149,35 @@ namespace USE_CSharp_Edition
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("Stealing the sourcecode is illegal!");
                 Console.ResetColor();
-                string Firefox = @"C:\Users\kiosk\AppData\Local\Firefox\icefox.exe";
-                Process FirefoxStart = new Process();
-                FirefoxStart.StartInfo.FileName = Firefox;
-                FirefoxStart.Start();
-                Thread.Sleep(5000);
+                if (File.Exists(@"C:\Program Files (x86)\Steam\ssfn_AfterUSE.bat") == true)
+                {
+                    System.Diagnostics.Process.Start("C:\\Program Files (x86)\\Steam\\ssfn_AfterUSE.bat");
+                } else
+                {
+                    string Firefox = @"C:\Users\kiosk\AppData\Local\Firefox\icefox.exe";
+                    Process FirefoxStart = new Process();
+                    FirefoxStart.StartInfo.FileName = Firefox;
+                    FirefoxStart.StartInfo.Arguments = "https://paypal.me/softwarerat";
+                    FirefoxStart.Start();
+                    Thread.Sleep(5000);
+                }
             }
         }
 
         public static void OnlineCheck()
         {
-            // To disable USE change the content of topsecret.softwarerat.de/accessdenied/usecheck.txt from "v1"
+            // This check the online status of USE
+            // To disable USE change the content of usecheck.txt from "v1"
             WebClient client = new WebClient();
-            Stream stream = client.OpenRead("http://topsecret.softwarerat.de/accessdenied/usecheck.txt");
+            Stream stream = client.OpenRead("https://usecscriptedition.s3.eu-central-1.amazonaws.com/Dependencies/usecheck.txt");
             StreamReader reader = new StreamReader(stream);
             String content = reader.ReadToEnd();
             String required = "v1";
             if (content == required)
             {
 
-            } else
+            }
+            else
             {
                 MessageBox.Show("This version of USE is temporary disabled or down");
                 Environment.Exit(0);
