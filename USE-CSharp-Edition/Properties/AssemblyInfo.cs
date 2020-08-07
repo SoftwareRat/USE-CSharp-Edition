@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("USE-CSharp-Edition")]
+[assembly: AssemblyTitle("USEwithoutCMD")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("USE-CSharp-Edition")]
+[assembly: AssemblyProduct("USEwithoutCMD")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
-[assembly: Guid("d3abc9a5-2d59-4f58-b514-430f39e1f261")]
+[assembly: Guid("59c8b9c7-2d77-41df-b71a-2b13ef84deeb")]
 
 // Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 //
