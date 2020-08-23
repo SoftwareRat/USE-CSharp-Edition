@@ -5,3 +5,10 @@ C:\Users\jagua\source\repos\USEwithoutCMD\USEwithoutCMD\obj\Release\USEwithoutCM
 C:\Users\jagua\source\repos\USEwithoutCMD\USEwithoutCMD\obj\Release\USEwithoutCMD.csproj.CoreCompileInputs.cache
 C:\Users\jagua\source\repos\USEwithoutCMD\USEwithoutCMD\obj\Release\USEwithoutCMD.exe
 C:\Users\jagua\source\repos\USEwithoutCMD\USEwithoutCMD\obj\Release\USEwithoutCMD.pdb
+C:\Users\Hamid Agayev\Source\Repos\USE-CSharp-Edition\USEwithoutCMD\bin\Release\USEwithoutCMD.exe.config
+C:\Users\Hamid Agayev\Source\Repos\USE-CSharp-Edition\USEwithoutCMD\bin\Release\USEwithoutCMD.exe
+C:\Users\Hamid Agayev\Source\Repos\USE-CSharp-Edition\USEwithoutCMD\bin\Release\USEwithoutCMD.pdb
+C:\Users\Hamid Agayev\Source\Repos\USE-CSharp-Edition\USEwithoutCMD\obj\Release\USEwithoutCMD.csprojAssemblyReference.cache
+C:\Users\Hamid Agayev\Source\Repos\USE-CSharp-Edition\USEwithoutCMD\obj\Release\USEwithoutCMD.csproj.CoreCompileInputs.cache
+C:\Users\Hamid Agayev\Source\Repos\USE-CSharp-Edition\USEwithoutCMD\obj\Release\USEwithoutCMD.exe
+C:\Users\Hamid Agayev\Source\Repos\USE-CSharp-Edition\USEwithoutCMD\obj\Release\USEwithoutCMD.pdb

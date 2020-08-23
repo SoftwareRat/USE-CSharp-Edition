@@ -1,18 +1,20 @@
 <SmartAssemblyProject ProjectId="{e46be10e-0080-4b39-a6c3-4c3869947157}" Version="2.0">
-    <MainAssemblyFileName>.\Release\USE-CSharp-Edition.exe</MainAssemblyFileName>
+    <MainAssemblyFileName>.\Release\USEwithoutCMD.exe</MainAssemblyFileName>
+    <FriendlyName>USEwithoutCMD</FriendlyName>
+    <CompanyName>SoftwareRat</CompanyName>
     <Configuration Name="Release">
         <Options>
-            <ExceptionReporting Template="res:{SmartExceptions}.1033.dll" />
+            <ExceptionReporting ReportExceptions="1" Template="res:{SmartExceptions}.1033.dll" />
             <FeatureUsageReporting Template="res:SmartUsageWithUIConsentFirstRun1033.dll" />
-            <StringsEncoding />
-            <StrongNameSigning Sign="0" TamperProtect="1" />
-            <Obfuscation FieldsNameMangling="2" NameMangling="3" />
+            <StringsEncoding Compress="1" Encode="1" UseCache="1" UseImprovedEncoding="1" />
+            <StrongNameSigning KeyFileName=".\USE.snk" Sign="1" TamperProtect="1" />
+            <Obfuscation CompilerGeneratedSerializable="1" FieldsNameMangling="3" NameMangling="3" />
             <OtherProtections SuppressIldasm="1" />
-            <OtherOptimizations />
-            <Debugging />
+            <OtherOptimizations SealClasses="1" />
+            <Debugging CreatePDB="1" ObfuscateDocumentsURL="1" />
             <CopyDependencies />
         </Options>
-        <ApplicationName />
+        <ApplicationName>Unauthorized Software Enabler</ApplicationName>
         <Assemblies>
             <Assembly AssemblyName="mscorlib, Culture=neutral, PublicKeyToken=b77a5c561934e089">
                 <Merging />
@@ -182,13 +184,14 @@
                 <Merging>
                     <ResourcesCompression />
                     <MemberRefsProxy Proxy="1" />
-                    <Pruning>
+                    <Pruning Prune="1">
                         <Exclusion />
                     </Pruning>
                     <Obfuscation Obfuscate="1">
                         <Exclusion />
                     </Obfuscation>
-                    <ControlFlow Obfuscate="1" ObfuscationLevel="2" />
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="4" />
+                    <StringsEncoding />
                 </Merging>
                 <Embedding />
             </Assembly>
@@ -204,6 +207,9 @@
                     <Obfuscation>
                         <Exclusion />
                     </Obfuscation>
+                    <Pruning>
+                        <Exclusion />
+                    </Pruning>
                 </Merging>
             </Assembly>
             <Assembly AssemblyName="SmartAssembly.HouseOfCards, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
@@ -215,6 +221,61 @@
             </Assembly>
             <Assembly AssemblyName="SmartAssembly.StringsEncoding, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
                 <Merging>
+                    <Obfuscation>
+                        <Exclusion />
+                    </Obfuscation>
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="SmartAssembly.StringsEncodingZip, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
+                <Merging>
+                    <Pruning>
+                        <Exclusion />
+                    </Pruning>
+                    <Obfuscation>
+                        <Exclusion />
+                    </Obfuscation>
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="SmartAssembly.Zip, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
+                <Merging>
+                    <Pruning>
+                        <Exclusion />
+                    </Pruning>
+                    <Obfuscation>
+                        <Exclusion />
+                    </Obfuscation>
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="USEwithoutCMD, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy Proxy="1" />
+                    <StringsEncoding />
+                    <Pruning Prune="1">
+                        <Exclusion />
+                    </Pruning>
+                    <Obfuscation Obfuscate="1">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="4" />
+                </Merging>
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="SmartExceptionsWithUI1033, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
+                <Merging>
+                    <Pruning>
+                        <Exclusion />
+                    </Pruning>
+                    <Obfuscation>
+                        <Exclusion />
+                    </Obfuscation>
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="SmartExceptionsCore, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
+                <Merging>
+                    <Pruning>
+                        <Exclusion />
+                    </Pruning>
                     <Obfuscation>
                         <Exclusion />
                     </Obfuscation>
