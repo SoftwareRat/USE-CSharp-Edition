@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Document Version="2">
+    <Protection InputFileName="USEwithoutCMD.exe" Options="857032">
+        <Messages />
+        <Folders />
+        <Procedures>
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(string)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(string, string, bool)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::.ctor()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;::&#x0D;&#x0A;(string, string, bool)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;::&#x0D;&#x0A;(string)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;::&#x0D;&#x0A;(string)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;::&#x0D;&#x0A;(string)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;::&#x0D;&#x0A;(class Microsoft.Win32.SafeHandles.SafeFileHandle)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;::&#x0D;&#x0A;(string, valuetype &#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;/&#x0D;&#x0A;)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;::&#x0D;&#x0A;(string)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(int32)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::.ctor()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::.cctor()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::.cctor()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(unsigned int8[])" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(unsigned int32&amp;, unsigned int32, unsigned int32, unsigned int32, unsigned int32, unsigned int16, unsigned int32, unsigned int32[])" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(unsigned int32&amp;, unsigned int32, unsigned int32, unsigned int32, unsigned int32, unsigned int16, unsigned int32, unsigned int32[])" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(unsigned int32&amp;, unsigned int32, unsigned int32, unsigned int32, unsigned int32, unsigned int16, unsigned int32, unsigned int32[])" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(unsigned int32&amp;, unsigned int32, unsigned int32, unsigned int32, unsigned int32, unsigned int16, unsigned int32, unsigned int32[])" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(unsigned int32, unsigned int16)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(unsigned int8[])" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(int32)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(unsigned int32)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(unsigned int32)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(string)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(native int, class System.Type)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(object)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(string)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(unsigned int8[])" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::.ctor()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;::.ctor(object)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;/&#x0D;&#x0A;`1::.ctor()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;::&#x0D;&#x0A;(string, string)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;/&#x0D;&#x0A;::.ctor()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::.ctor()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::.cctor()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(int32)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::&#x0D;&#x0A;(int32)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::.ctor()" Options="0" CompilationType="2" />
+            <Procedure MapAddress="&#x0D;&#x0A;.&#x0D;&#x0A;::.cctor()" Options="0" CompilationType="2" />
+        </Procedures>
+        <Objects />
+    </Protection>
+    <DLLBox>
+        <Folders />
+    </DLLBox>
+    <Script />
+    <LicenseManager />
+</Document>
