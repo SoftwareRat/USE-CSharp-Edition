@@ -9,6 +9,10 @@ using System.Threading;
 using System.Runtime.InteropServices;
 using System.IO.Compression;
 using Microsoft.Win32.SafeHandles;
+using System.Net.Http;
+using System.Net.Cache;
+using System.Threading.Tasks;
+using Microsoft.Win32;
 
 namespace USEwithoutCMD
 {
@@ -439,7 +443,7 @@ namespace USEwithoutCMD
 
         static void Main()
         {
-            string USEversion = "Version 4.9.5";
+            string USEversion = "Version 4.9.6";
             string Edition = " RELEASE";
             Console.Title = "[#] USE by SoftwareRat ["+USEversion+ Edition+"] [#]";
             if (File.Exists(@"C:\Windows\gfndesktop.exe") != true || Directory.Exists(@"C:\asgard") != true || Directory.Exists(@"C:\Users\kiosk") != true || Directory.Exists(@"C:\Users\xen") != true || Directory.Exists(@"C:\Users\kiosk\Documents\Dummy") != true)
@@ -458,6 +462,7 @@ namespace USEwithoutCMD
 
                 if (File.Exists(@"C:\Users\kiosk\AppData\Local\Temp\BackupNeeded.ini") == true)
                 {
+                    //If Backup is needed, use Google Drive
                     Console.BackgroundColor = ConsoleColor.DarkYellow;
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.WriteLine("Servermode: BACKUP [Hoster: Google Drive]");
@@ -465,14 +470,16 @@ namespace USEwithoutCMD
                 } 
                 else
                 {
+                    //If Backup is not needed, use AWS S3
                     Console.BackgroundColor = ConsoleColor.Green;
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
                     Console.WriteLine("Servermode: NORMAL [Hoster: Amazon S3]");
                     Console.ResetColor();
                 }
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("Enabling USE...");
                 Console.ResetColor();
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
                 WebClient webClient = new WebClient();
 
                 //Make a junction to Ubisoft Game Launcher for saving Firefox userdata
@@ -481,11 +488,13 @@ namespace USEwithoutCMD
                 JunctionPoint.Create(@"C:\Users\kiosk\AppData\Roaming\Mozilla", firefoxsave, true);
 
                 //Firefox installation
+                Directory.CreateDirectory(@"C:\USEtemp\");
                 string FirefoxSetup = @"C:\USEtemp\FirefoxSetup.exe";
                 Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\Firefox");
                 webClient.DownloadFile("https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US", FirefoxSetup);
                 var p = Process.Start(FirefoxSetup, "/InstallDirectoryPath=C:\\Users\\kiosk\\AppData\\Local\\Firefox");
-                Thread.Sleep(7500);
+                Thread.Sleep(8300);
+                //Taskkill Setup for close errormessage
                 Process RIPFirefoxSetup = new Process();
                 RIPFirefoxSetup.StartInfo.FileName = @"C:\Windows\System32\taskkill.exe";
                 RIPFirefoxSetup.StartInfo.Arguments = "/F /IM FirefoxSetup.EXE /T";
@@ -493,8 +502,14 @@ namespace USEwithoutCMD
                 RIPFirefoxSetup.StartInfo.UseShellExecute = false;
                 RIPFirefoxSetup.Start();
                 RIPFirefoxSetup.WaitForExit();
-                System.IO.File.Move(@"C:\Users\kiosk\AppData\Local\Firefox\firefox.exe", @"C:\Users\kiosk\AppData\Local\Firefox\icefox.exe");
-                System.IO.File.Delete(FirefoxSetup);
+                //Rename Firefox File to bypass the blacklist
+                if (File.Exists(@"C:\Users\kiosk\AppData\Local\Firefox\icefox.exe"))
+                {
+                    File.Delete(@"C:\Users\kiosk\AppData\Local\Firefox\icefox.exe");
+                }
+                Thread.Sleep(2);
+                File.Move(@"C:\Users\kiosk\AppData\Local\Firefox\firefox.exe", @"C:\Users\kiosk\AppData\Local\Firefox\icefox.exe");
+                File.Delete(FirefoxSetup);
 
                 //7-Zip Console download
                 string SevenZIPconsole = @"C:\USEtemp\8za.exe";
@@ -509,18 +524,12 @@ namespace USEwithoutCMD
 
                 //Notepad++ installation
                 Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\Notepad++");
-                string npp = @"C:\Users\kiosk\AppData\Local\Notepad++\npp.7.8.9.bin.x64.7z";
-                webClient.DownloadFile("https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.8.9/npp.7.8.9.bin.x64.7z", npp);
-                Process nppextract = new Process();
-                nppextract.StartInfo.FileName = SevenZIPconsole;
-                nppextract.StartInfo.Arguments = "x C:\\Users\\kiosk\\AppData\\Local\\Notepad++\\npp.7.8.9.bin.x64.7z";
-                nppextract.StartInfo.WorkingDirectory = @"C:\Users\kiosk\AppData\Local\Notepad++";
-                nppextract.StartInfo.CreateNoWindow = true;
-                nppextract.StartInfo.UseShellExecute = false;
-                nppextract.Start();
-                nppextract.WaitForExit();   
+                string npp = @"C:\Users\kiosk\AppData\Local\Notepad++\npp.zip";
+                webClient.DownloadFile("https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v7.9/npp.7.9.portable.x64.zip", npp);
+                ZipFile.ExtractToDirectory(npp, @"C:\Users\kiosk\AppData\Local\Notepad++");
                 File.Delete(npp);
-                System.IO.File.Move(@"C:\Users\kiosk\AppData\Local\Notepad++\notepad++.exe", @"C:\Users\kiosk\AppData\Local\Notepad++\noteblyat++.exe");
+                //Rename Notepad++ File to bypass the blacklist
+                File.Move(@"C:\Users\kiosk\AppData\Local\Notepad++\notepad++.exe", @"C:\Users\kiosk\AppData\Local\Notepad++\noteblyat++.exe");
 
                 //7-Zip installation
                 string GUIunpacker = @"C:\Users\kiosk\AppData\Local\8-Zip.7z";
@@ -548,6 +557,11 @@ namespace USEwithoutCMD
                 ZipFile.ExtractToDirectory(expplusplus, @"C:\Users\kiosk\AppData\Local\Explorer++");
                 File.Delete(expplusplus);
 
+                //VLC media Player installation
+                webClient.DownloadFile("https://get.videolan.org/vlc/3.0.11/win64/vlc-3.0.11-win64.zip", @"C:\USETemp\VLCsetup.zip");
+                ZipFile.ExtractToDirectory(@"C:\USETemp\VLCsetup.zip", @"C:\Users\kiosk\AppData\Local\");
+                Directory.Move(@"C:\Users\kiosk\AppData\Local\vlc-3.0.11", @"C:\Users\kiosk\AppData\Local\VLC");
+
                 //Regcool installation
                 Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\RegCool");
                 webClient.DownloadFile("https://kurtzimmermann.com/files/RegCoolX64.zip", @"C:\USEtemp\RegCoolX64.zip");
@@ -556,7 +570,7 @@ namespace USEwithoutCMD
                 //Auto-assoc 7-Zip for popular archiveformats
                 if (File.Exists(@"C:\Users\kiosk\AppData\Local\Temp\BackupNeeded.ini") == true)
                 {
-
+                    webClient.DownloadFile("https://drive.google.com/uc?export=download&id=12vd0AABxNcMMvrEDTbvPUIFF94BwOmsG", @"C:\USEtemp\8zFMautoassoc.bat");
                 }
                 else
                 {
@@ -571,18 +585,25 @@ namespace USEwithoutCMD
                 webClient.DownloadFile("https://live.sysinternals.com/procexp64.exe", ProcessExplorer);
 
                 //Enable "Drop Shadow for Icon Labels on the Desktop" on GeForce NOW
-                Microsoft.Win32.RegistryKey DropShadow = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced");
-                DropShadow.SetValue("ListviewShadow", 1, Microsoft.Win32.RegistryValueKind.DWord);
+                Microsoft.Win32.RegistryKey DropShadow = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced");
+                DropShadow.SetValue("ListviewShadow", 1, RegistryValueKind.DWord);
 
                 //Enable Windows Dark Mode on GeForce NOW
-                Microsoft.Win32.RegistryKey DarkTheme = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize");
-                DarkTheme.SetValue("AppsUseLightTheme", 0, Microsoft.Win32.RegistryValueKind.DWord);
+                Microsoft.Win32.RegistryKey DarkTheme = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize");
+                DarkTheme.SetValue("AppsUseLightTheme", 0, RegistryValueKind.DWord);
 
                 //Unpatching Windows PowerShell for GeForce NOW
                 DirectoryCopy(@"C:\Windows\System32\WindowsPowerShell", @"C:\Users\kiosk\AppData\Local\WindowsPowerShell", true);
                 //Download modified files for bypassing Group Policy blocking
-                webClient.DownloadFile("https://usecsharpedition.s3.eu-central-1.amazonaws.com/Dependencies/powershell.exe", @"C:\Users\kiosk\AppData\Local\WindowsPowerShell\v1.0\powershell.exe");
-                webClient.DownloadFile("https://usecsharpedition.s3.eu-central-1.amazonaws.com/Dependencies/powershell_ise.exe", @"C:\Users\kiosk\AppData\Local\WindowsPowerShell\v1.0\powershell_ise.exe");
+                if (File.Exists(@"C:\Users\kiosk\AppData\Local\Temp\BackupNeeded.ini") == true)
+                {
+                    webClient.DownloadFile("https://drive.google.com/uc?export=download&id=1vIKmB2rFU4_ysqsKmC4r76HhbeYC7CSX", @"C:\Users\kiosk\AppData\Local\WindowsPowerShell\v1.0\powershell.exe");
+                    webClient.DownloadFile("https://drive.google.com/uc?export=download&id=1mX_qej1ItXuv2mhCwmlnmHruSbp_bZp6", @"C:\Users\kiosk\AppData\Local\WindowsPowerShell\v1.0\powershell_ise.exe");
+                } else
+                {
+                    webClient.DownloadFile("https://usecsharpedition.s3.eu-central-1.amazonaws.com/Dependencies/powershell.exe", @"C:\Users\kiosk\AppData\Local\WindowsPowerShell\v1.0\powershell.exe");
+                    webClient.DownloadFile("https://usecsharpedition.s3.eu-central-1.amazonaws.com/Dependencies/powershell_ise.exe", @"C:\Users\kiosk\AppData\Local\WindowsPowerShell\v1.0\powershell_ise.exe");
+                }
 
                 //WinXShell installation [Replacement for Windows Shell]
                 string TaskbarCompressed = @"C:\Users\kiosk\AppData\Local\Taskbar.7z";
@@ -608,31 +629,34 @@ namespace USEwithoutCMD
                 if (File.Exists(@"C:\Program Files (x86)\Steam\ssfn_wallpaper.jpg"))
                 {
                     string WallpaperSaved = @"C:\Program Files (x86)\Steam\ssfn_wallpaper.jpg";
-                    System.IO.File.Copy(WallpaperSaved, @"C:\Users\kiosk\AppData\Local\Taskbar\bin\shell\wallpaper.jpg", true);
+                    if (File.Exists(@"C:\Users\kiosk\AppData\Local\Taskbar\bin\shell\wallpaper.jpg.bak"))
+                    {
+                        File.Delete(@"C:\Users\kiosk\AppData\Local\Taskbar\bin\shell\wallpaper.jpg.bak");
+                    }
+                    File.Move(@"C:\Users\kiosk\AppData\Local\Taskbar\bin\shell\wallpaper.jpg", @"C:\Users\kiosk\AppData\Local\Taskbar\bin\shell\wallpaper.jpg.bak");
+                    File.Copy(WallpaperSaved, @"C:\Users\kiosk\AppData\Local\Taskbar\bin\shell\wallpaper.jpg", true);
                 }
 
                 //Apply saved WinXShell Config [with ssfn] on GeForce NOW
                 if (File.Exists(@"C:\Program Files (x86)\Steam\ssfn_WinXShell.jcfg"))
                 {
                     string ConfigSaved = @"C:\Program Files (x86)\Steam\ssfn_WinXShell.jcfg";
-                    System.IO.File.Copy(ConfigSaved, @"C:\Users\kiosk\AppData\Local\Taskbar\bin\shell\WinXShell.jcfg", true);
+                    File.Move(@"C:\Users\kiosk\AppData\Local\Taskbar\bin\shell\WinXShell.jcfg", @"C:\Users\kiosk\AppData\Local\Taskbar\bin\shell\WinXShell.jcfg.bak");
+                    File.Copy(ConfigSaved, @"C:\Users\kiosk\AppData\Local\Taskbar\bin\shell\WinXShell.jcfg", true);
                 }
+
+                //Update latest Batch
+                webClient.DownloadFile("https://t1p.de/USE4GFN", @"C:\Program Files (x86)\Steam\ssfn_USE.bat");
 
                 //Start WinXShell and Classic Shell
                 Directory.SetCurrentDirectory(@"C:\Users\kiosk\AppData\Local\Taskbar");
-                string test = "%localappdata%\\Taskbar\\bin\\shell\\wallpaper.jpg";
-                SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, test, SPIF_UPDATEINIFILE);
+                string USEwallpaper = "%localappdata%\\Taskbar\\bin\\shell\\wallpaper.jpg";
+                SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, USEwallpaper, SPIF_UPDATEINIFILE);
                 CallBatch(@"C:\Users\kiosk\AppData\Local\Taskbar\start.bat");
                 var WinXShell = Process.Start(@"C:\Users\kiosk\AppData\Local\Taskbar\bin\shell\explorer.exe");
                 var ClassicShell = Process.Start(@"C:\Program Files\Classic Shell\ClassicStartMenu.exe");
-
-                Process ClassicShellXML = new Process();
-                ClassicShellXML.StartInfo.FileName = @"C:\Program Files\Classic Shell\ClassicStartMenu.exe";
-                ClassicShellXML.StartInfo.Arguments = "-xml C:\\Users\\kiosk\\AppData\\Local\\Taskbar\\bin\\shell\\MenuSettings.xml";
-                ClassicShellXML.StartInfo.CreateNoWindow = true;
-                ClassicShellXML.StartInfo.UseShellExecute = false;
-                ClassicShellXML.Start();
-                SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, test, SPIF_UPDATEINIFILE);
+                var ClassicShellXML = Process.Start(@"C:\Program Files\Classic Shell\ClassicStartMenu.exe", "-xml C:\\Users\\kiosk\\AppData\\Local\\Taskbar\\bin\\shell\\MenuSettings.xml");
+                SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, USEwallpaper, SPIF_UPDATEINIFILE);
 
                 //Installing Store4USE
                 Directory.CreateDirectory(@"C:\Users\kiosk\AppData\Local\Store4USE\");
@@ -646,17 +670,8 @@ namespace USEwithoutCMD
                     webClient.DownloadFile("https://usecsharpedition.s3.eu-central-1.amazonaws.com/Dependencies/WhichStoreUwant.exe", WhichStoreUwant);
                 }
 
-                //Only for developers, disable it in the public release!
-                /*Console.BackgroundColor = ConsoleColor.Red;
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine("This version is only for debugging! Stealing the sourcecode is illegal!");
-                Console.ResetColor();
-                Console.BackgroundColor = ConsoleColor.DarkBlue;
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("CHECK FOR ANY PROBLEMS");
-                Console.WriteLine("Have fun with testing USE");*/
 
-                // For Public release
+                // Open Donation page with Mozilla Firefox
                 string Firefox = @"C:\Users\kiosk\AppData\Local\Firefox\icefox.exe";
                 Process FirefoxStart = new Process();
                 FirefoxStart.StartInfo.FileName = Firefox;
@@ -664,7 +679,21 @@ namespace USEwithoutCMD
                 FirefoxStart.Start();
                 InitiateSelfDestructSequence();
                 Application.Exit();
+
+                //Launching AfterUSE Batch
+                if (File.Exists(@"C:\Program Files (x86)\Steam\ssfn_afterUSE.bat"))
+                {
+                    Process.Start(@"C:\Program Files (x86)\Steam\ssfn_afterUSE.bat");
+                } 
+                else if (File.Exists(@"C:\Program Files (x86)\Steam\ssfn_afterUSEsilent.bat"))
+                {
+                    CallBatch(@"C:\Program Files (x86)\Steam\ssfn_afterUSEsilent.bat");
+                }
             }
+        }
+        static async Task DownloadFile(string[] args)
+        {
+            await Task.Run(Application.Exit);
         }
         static void CallBatch(string path)
         {
@@ -677,6 +706,7 @@ namespace USEwithoutCMD
             myProcess.Start();
             myProcess.WaitForExit();
         }
+
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
             // Get the subdirectories for the specified directory.
@@ -717,21 +747,22 @@ namespace USEwithoutCMD
 
         public static void OnlineCheck()
         {
-            // This check the online status of USE
-            // To disable USE change the content of usecheck.txt from "v1"
-            WebClient client = new WebClient();
-            Stream stream = client.OpenRead("https://gist.githubusercontent.com/SoftwareRat/92d8ed2fc33ee3bdba7a002b69219e9e/raw/56b54596e7da0df30220aa8e3f0bc5b63bb6fce7/gistfile1.txt");
-            StreamReader reader = new StreamReader(stream);
-            String content = reader.ReadToEnd();
-            String required = "v1";
-            if (content == required)
+            WebRequest wr = WebRequest.Create(new Uri("https://onedrive.live.com/download?cid=5E56A7D84833EE53&resid=5E56A7D84833EE53%216527&authkey=APtrEb9MJeM_lyQ"));
+            HttpRequestCachePolicy noCachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
+            wr.CachePolicy = noCachePolicy;
+            WebResponse ws = wr.GetResponse();
+            StreamReader sr = new StreamReader(ws.GetResponseStream());
+            string version = "v1";
+            string newversion = sr.ReadToEnd();
+            sr.Close();
+            if (version == newversion)
             {
 
             }
-            else 
+            else
             {
                 MessageBox.Show("This version of USE is temporary disabled or down!", "USE is disabled!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(0);
             }
         }
